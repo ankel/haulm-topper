@@ -23,8 +23,7 @@ SomeType getImportantProperty()
 }
 ```
 
-Odd is that you have a class filled with methods similar to this to convert a string configuration to objects that your app uses.
-
+Odd is that you have a class filled with methods similar to this to convert a string configuration to objects that your app uses. These boiler plate code are fairly error prone and for that many lines, there are only one piece of information that cannot be deduced automatically: the property key.
 And haulm-topper is here to help you with that. The goal of Haulm-topper is to simplify the configuration process like follow
 
 ```java
@@ -46,7 +45,7 @@ In slow motion:
   * Optionally, you can provide a class that contains static methods that turn a string into the type that you want.
 * That's it, Haulm-topper takes care of getting the property for you.
   * If the properties doesn't contain the annotated key, an exception is thrown.
-  * But if the returned type is `Optional<SomeType>`, it'll be `Optional.empty`. How handy is that!
-  
-## Why the name?
- [Haulm topper](https://en.wikipedia.org/wiki/Potato_harvester#Haulm_topper) is a machine used in harvesting root crops. It cuts the above ground parts of the plant so that a harvester can get at the roots below, which are the actual fruit of these crops.  
+  * But if the returned type is `java.util.Optional<SomeType>`, it'll be `Optional.empty` instead of an exception. How handy is that?
+    * And if the convert method returns null, the final value is still `Optional.empty`
+
+Finally, a set of default conversion methods are provided (`toInt`, `toLong`, `toDouble`) but if your class contains any method with similar signature, it will override the default ones.
