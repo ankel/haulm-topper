@@ -6,7 +6,7 @@ Processing raw properties so you can get what you need easier.
 ## What is a haulm topper?
  [Haulm topper](https://en.wikipedia.org/wiki/Potato_harvester#Haulm_topper) is a machine used in harvesting root crops. It cuts the above ground parts of the plant so that a harvester can get at the roots below, which are the actual fruit of these crops.
 
-## The problem
+## Seriously, what is it?
 Apps typically need some configuration, from a `.properties` file for example. And if you've ever worked on any medium-or-bigger sized project, you're probably familiar with this pattern
 
 ```java
