@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ankel/haulm-topper.svg?branch=master)](https://travis-ci.org/ankel/haulm-topper)
+
 # haulm-topper
 Processing raw properties so you can get what you need easier.
 
