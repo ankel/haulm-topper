@@ -1,9 +1,12 @@
 package ankel.haulmtoper;
 
-import ankel.haulmtoper.internal.ConfigProxy;
 import ankel.haulmtoper.api.ConfigUtils;
+import ankel.haulmtoper.internal.ConfigProxy;
+import com.google.common.collect.Lists;
 
 import java.lang.reflect.Proxy;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,20 +15,18 @@ import java.util.Map;
 public class ConfigurationGenerator
 {
   @SuppressWarnings("unchecked")
-  public static <T> T createFor(final Class<T> configInterface, final Map<String, String> properties)
+  public static <T> T createFor(
+      final Class<T> configInterface,
+      final Map<String, String> properties,
+      final Class<?>... convertClasses)
   {
-    return (T) Proxy.newProxyInstance(
-        configInterface.getClassLoader(),
-        new Class[] {configInterface},
-        new ConfigProxy(properties, ConfigUtils.class));
-  }
+    List<Class<?>> convertClassList = Lists.newArrayList(convertClasses);
 
-  @SuppressWarnings("unchecked")
-  public static <T> T createFor(final Class<T> configInterface, final Map<String, String> properties, final Class<?> convertClass)
-  {
+    convertClassList.add(ConfigUtils.class);
+
     return (T) Proxy.newProxyInstance(
         configInterface.getClassLoader(),
         new Class[] {configInterface},
-        new ConfigProxy(properties, convertClass, ConfigUtils.class));
+        new ConfigProxy(properties, convertClassList));
   }
 }

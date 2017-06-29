@@ -2,6 +2,7 @@ package ankel.haulmtoper;
 
 import ankel.haulmtoper.PropertyInterface.Bar;
 import ankel.haulmtoper.PropertyInterface.Foo;
+import ankel.haulmtoper.PropertyInterface.TypeConverter;
 import ankel.haulmtoper.api.InvalidConfigurationMethod;
 import ankel.haulmtoper.api.MissingPropertyKey;
 import ankel.haulmtoper.api.PropertyKey;
@@ -26,7 +27,7 @@ public class ConfigurationGeneratorTest
       .put("bar", "not too bar")
       .build();
 
-  private PropertyInterface pi = ConfigurationGenerator.createFor(PropertyInterface.class, props, Foo.class);
+  private PropertyInterface pi = ConfigurationGenerator.createFor(PropertyInterface.class, props, TypeConverter.class);
 
   @Test
   public void testGetInt()
@@ -63,7 +64,7 @@ public class ConfigurationGeneratorTest
     }
     catch (final MissingPropertyKey e)
     {
-      log.error("Expected exception",e);
+      log.info("Expected exception",e);
     }
     catch (final Exception e)
     {

@@ -34,10 +34,18 @@ public interface PropertyInterface
   class Foo
   {
     private final String s;
+  }
 
+  class TypeConverter
+  {
     public static Foo someRandomName(final String s)
     {
       return new Foo(s);
+    }
+
+    public Bar invalidMethodBecauseItsNotStatic(final String s)
+    {
+      return null;
     }
   }
 
@@ -45,10 +53,5 @@ public interface PropertyInterface
   class Bar
   {
     private final String s;
-
-    public Bar invalidMethodBecauseItsNotStatic(final String s)
-    {
-      return null;
-    }
   }
 }

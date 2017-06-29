@@ -4,12 +4,14 @@ import ankel.haulmtoper.api.InvalidConfigurationMethod;
 import ankel.haulmtoper.api.MissingPropertyKey;
 import ankel.haulmtoper.api.PropertyKey;
 import com.google.common.base.Strings;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ClassUtils;
 
 import java.lang.reflect.*;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -27,10 +29,10 @@ public class ConfigProxy implements InvocationHandler
 
   public ConfigProxy(
       final Map<String, String> properties,
-      final Class<?>... valueConverter)
+      final Collection<Class<?>> valueConverter)
   {
     this.properties = new AtomicReference<>(ImmutableMap.copyOf(properties));
-    this.valueConverters = Lists.newArrayList(valueConverter);
+    this.valueConverters = ImmutableList.copyOf(valueConverter);
   }
 
   @Override
@@ -119,7 +121,8 @@ public class ConfigProxy implements InvocationHandler
   {
     Method convertMethod = null;
 
-    classLoop: for (final Class<?> valueConverter : valueConverters)
+    classLoop:
+    for (final Class<?> valueConverter : valueConverters)
     {
       for (final Method m : valueConverter.getDeclaredMethods())
       {
