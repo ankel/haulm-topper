@@ -36,7 +36,7 @@ interface Config
   SomeType getImportantProperty();
 }
 //...
-Config config = ConfigurationGenerator.createFor(Config.class, properties, SomeType.class);
+Config config = ConfigurationGenerator.createFor(Config.class, properties, ConvertUtility.class);
 
 SomeType prop = config.getImportantProperty();
 ```
@@ -50,4 +50,4 @@ In slow motion:
   * But if the returned type is `java.util.Optional<SomeType>`, it'll be `Optional.empty` instead of an exception. How handy is that?
     * And if the convert method returns null, the final value is still `Optional.empty`
 
-Finally, a set of default conversion methods are provided (`toInt`, `toLong`, `toDouble`) but if your class contains any method with similar signature, it will override the default ones.
+Finally, a set of default conversion methods are provided (`toInt`, `toLong`, `toDouble`) but if your `ConvertUtility` class contains any static method with similar signature, it will override the default ones. 
