@@ -7,7 +7,7 @@ Processing raw properties so you can get what you need easier.
  [Haulm topper](https://en.wikipedia.org/wiki/Potato_harvester#Haulm_topper) is a machine used in harvesting root crops. It cuts the above ground parts of the plant so that a harvester can get at the roots below, which are the actual fruit of these crops.
 
 ## Seriously, what is it?
-Apps typically need some configuration, from a `.properties` file for example. And if you've ever worked on any medium-or-bigger sized project, you're probably familiar with this pattern
+Apps typically need some configurations, from a `.properties` file for example. And they also need code to convert those string into usable objects like this.
 
 ```java
 final Properties properties = new Properties();
@@ -25,7 +25,7 @@ SomeType getImportantProperty()
 }
 ```
 
-Odd is that you have a class filled with methods similar to this to convert a string configuration to objects that your app uses. These boiler plate code are fairly error prone and for that many lines, there are only one piece of information that cannot be deduced automatically: the property key.
+These boiler plate code are fairly error prone and for that many lines, there are only one piece of information that cannot be deduced automatically: the property key.
 And haulm-topper is here to help you with that. The goal of Haulm-topper is to simplify the configuration process like follow
 
 ```java
