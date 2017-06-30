@@ -9,7 +9,7 @@ import java.util.Optional;
 /**
  * @author Binh Tran
  */
-public interface PropertyInterface
+interface PropertyInterface
 {
   @PropertyKey("AnInt")
   int getInt();
@@ -17,7 +17,7 @@ public interface PropertyInterface
   @PropertyKey("AnLong")
   long getInvalidMethod(Object foo);
 
-  @PropertyKey("AnLong")
+  @PropertyKey("ALong")
   Long getAnLong();
 
   @PropertyKey("AString")
@@ -34,19 +34,6 @@ public interface PropertyInterface
   class Foo
   {
     private final String s;
-  }
-
-  class TypeConverter
-  {
-    public static Foo someRandomName(final String s)
-    {
-      return new Foo(s);
-    }
-
-    public Bar invalidMethodBecauseItsNotStatic(final String s)
-    {
-      return null;
-    }
   }
 
   @RequiredArgsConstructor

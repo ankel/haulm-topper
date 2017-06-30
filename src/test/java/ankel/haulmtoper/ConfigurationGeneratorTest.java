@@ -2,13 +2,10 @@ package ankel.haulmtoper;
 
 import ankel.haulmtoper.PropertyInterface.Bar;
 import ankel.haulmtoper.PropertyInterface.Foo;
-import ankel.haulmtoper.PropertyInterface.TypeConverter;
 import ankel.haulmtoper.api.InvalidConfigurationMethod;
 import ankel.haulmtoper.api.MissingPropertyKey;
-import ankel.haulmtoper.api.PropertyKey;
 import com.google.common.collect.ImmutableMap;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Optional;
@@ -115,7 +112,7 @@ public class ConfigurationGeneratorTest
     }
     catch (final InvalidConfigurationMethod e)
     {
-      log.error("Expected exception",e);
+      log.info("Expected exception",e);
     }
     catch (final Exception e)
     {

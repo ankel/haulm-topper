@@ -10,8 +10,8 @@ Processing raw properties so you can get what you need easier.
 Apps typically need some configuration, from a `.properties` file for example. And if you've ever worked on any medium-or-bigger sized project, you're probably familiar with this pattern
 
 ```java
-Properties properties;
-//... read in the properties
+final Properties properties = new Properties();
+properties.load(this.getClass().getResourceAsStream("default.properties"));
 
 SomeType getImportantProperty()
 {
@@ -50,4 +50,16 @@ In slow motion:
   * But if the returned type is `java.util.Optional<SomeType>`, it'll be `Optional.empty` instead of an exception. How handy is that?
     * And if the convert method returns null, the final value is still `Optional.empty`
 
-Finally, a set of default conversion methods are provided (`toInt`, `toLong`, `toDouble`) but if your `ConvertUtility` class contains any static method with similar signature, it will override the default ones. 
+Finally, a set of default conversion methods are provided (`toInt`, `toLong`, `toDouble`) but if your `ConvertUtility` class contains any static method with similar signature, it will override the default ones.
+ 
+For instance, here's a high-performance web-scale implementation of `ConvertUtility`.
+
+```java
+public class ConvertUtility
+{
+  public static int someRandomName(final String s)
+  {
+    return 42;
+  }
+}
+```
